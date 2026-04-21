@@ -44,19 +44,13 @@ Then User failed to login because see error message ${error_message}
     Close Browser
 
 User login as ${role}
-    Open browser    about:blank    ${browser}[Firefox]
-    Go to           ${base_url}
+    Open Browser    about:blank    ${browser}[Firefox]
+    Go To           ${base_url}
     Maximize Browser Window
-    Run Keyword If    '${role}'=='standard_user'    Input Text    ${login_field}[username]    ${role}
-    Run Keyword If    '${role}'=='standard_user'    Input Text    ${login_field}[password]    ${password}
-    Run Keyword If    '${role}'=='problem_user'    Input Text    ${login_field}[username]    ${role}
-    Run Keyword If    '${role}'=='problem_user'    Input Text    ${login_field}[password]    ${password}
-    Run Keyword If    '${role}'=='performance_glitch_user'    Input Text    ${login_field}[username]    ${role}
-    Run Keyword If    '${role}'=='performance_glitch_user'    Input Text    ${login_field}[password]    ${password}
-    Run Keyword If    '${role}'=='error_user'    Input Text    ${login_field}[username]    ${role}
-    Run Keyword If    '${role}'=='error_user'    Input Text    ${login_field}[password]    ${password}
-    Run Keyword If    '${role}'=='visual_user'    Input Text    ${login_field}[username]    ${role}
-    Run Keyword If    '${role}'=='visual_user'    Input Text    ${login_field}[password]    ${password}
-    Click Element    ${login_button}[login_button]
+
+    Input Text      ${login_field}[username]    ${username}[${role}]
+    Input Text      ${login_field}[password]    ${password}
+
+    Click Element   ${login_button}[login_button]
     Wait Until Page Contains    Products
     Sleep    2s
