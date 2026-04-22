@@ -29,7 +29,7 @@ jobs:
     - name: Run Robot Tests
       env:
         HEADLESS: true
-      run: python -m robot tests/login_features.robot
+      run: python -m robot testcases/login_features.robot
 
     - name: Upload Robot Reports
       uses: actions/upload-artifact@v4
