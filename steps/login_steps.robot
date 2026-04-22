@@ -5,7 +5,11 @@ Resource   ../variables/login_variables.robot
 
 *** Keywords ***
 Given User access Sauce Demo website
-    Open browser    about:blank    ${browser}[Firefox]
+    ${HEADLESS}=    Get Environment Variable    HEADLESS    false
+    Run Keyword If    '${HEADLESS}'=='true'    
+    ...    Open Browser    about:blank    chrome    options=add_argument(--headless);add_argument(--no-sandbox);add_argument(--disable-dev-shm-usage)
+    ...    ELSE
+    ...    Open Browser    about:blank    chrome
     Go to           ${base_url}
     Maximize Browser Window
     Sleep    2s
